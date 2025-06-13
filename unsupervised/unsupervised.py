@@ -4,6 +4,7 @@ import cv2
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
+from collections import Counter
 
 class UnsupervisedLearning:
     def __init__(self, image_folder, img_size=(64, 64)):
@@ -45,3 +46,9 @@ class UnsupervisedLearning:
         plt.ylabel('PCA 2')
         plt.grid(True)
         plt.show()
+
+    def count_cluster_labels(self, labels):
+        label_counts = Counter(labels)
+        print("Jumlah gambar di tiap cluster:")
+        for cluster_id, count in label_counts.items():
+            print(f"Cluster {cluster_id}: {count} gambar")
