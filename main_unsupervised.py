@@ -1,9 +1,10 @@
 from unsupervised.unsupervised import UnsupervisedLearning
 
 unsup = UnsupervisedLearning("00000")
-unsup.load_images()
+unsup.load_dataset()  # Panggil method yang sudah ada
 
-pca_result = unsup.apply_pca()
-kmeans_labels = unsup.apply_kmeans(n_clusters=3)
-unsup.plot_clusters(pca_result, kmeans_labels, title="K-Means Clustering with PCA")
-unsup.count_cluster_labels(kmeans_labels)
+features = unsup.extract_features()
+reduced = unsup.apply_pca(features)
+cluster_labels = unsup.apply_kmeans(reduced, n_clusters=4)
+unsup.plot_clusters(reduced, cluster_labels)
+unsup.count_cluster_labels(cluster_labels)
